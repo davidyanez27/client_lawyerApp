@@ -9,8 +9,6 @@ interface props {
     children: JSX.Element | JSX.Element[];
   }
   
-
-
   
 export const AuthProvider = ({ children }: props) => {
     const [user, setUSer] = useState(null);
