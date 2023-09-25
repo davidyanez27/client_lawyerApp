@@ -11,7 +11,6 @@ import LoginPage from "./pages/LoginPage";
       <Route path='/login' element = {<LoginPage />}/>
       <Route path='/register' element = {<RegisterPage/>}/>
       <Route path='/profile' element = {<h1 className='text-4xl font-bold'>Profile</h1>}/>
-
     </Routes>
   )
 }

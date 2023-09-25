@@ -1,9 +1,11 @@
 import { useForm } from "react-hook-form";
+import { useAuth } from "../context/AuthContext";
 import { registerRequest } from "../api/auth";
 import MySvg from "../assets/doc.svg";
 
 function Register() {
   const { register, handleSubmit } = useForm();
+  const { signup } = useAuth();
 
   return (
     <div className="bg-slate-200 max-w-md p-10 rounded-md">
@@ -20,9 +22,10 @@ function Register() {
 
       <form
         onSubmit={handleSubmit(async (values) => {
-          console.log(values);
-          const res = await registerRequest(JSON.stringify(values));
-          console.log(res);
+          signup(values )
+          // values.id = Number(values.id);
+          // const res = await registerRequest(values);
+          // console.log(res);
         })}
       >
         <div>
@@ -75,7 +78,7 @@ function Register() {
           <div className="mt-1 mb-4">
             <input
               className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 px-3  sm:text-sm sm:leading-6"
-              {...register("name", { required: true })}
+              {...register("email", { required: true })}
               placeholder="Email"
               type="email"
               name="email"
