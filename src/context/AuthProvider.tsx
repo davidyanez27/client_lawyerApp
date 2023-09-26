@@ -9,9 +9,9 @@ interface props {
 }
 
 export const AuthProvider = ({ children }: props) => {
-  const [user, setUSer] = useState({});
+  const [user, setUSer] = useState<Partial<User>>({});
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<string[]>([]);
 
   const signup = async (values: User) => {
     try {
@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }: props) => {
       setIsAuthenticated(true);
     } catch (error) {
       console.log((error as ValidationError).response.data.message);
-      console.log(typeof(error as ValidationError).response.data);
+      console.log(typeof(error as ValidationError).response.data.message);
       setErrors((error as ValidationError).response.data.message);
 
     }

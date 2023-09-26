@@ -12,3 +12,12 @@ export interface ValidationError extends Error {
     };
   };
 }
+
+export interface InputProps {
+  type: string;
+  id: string;
+  name: string;
+  values: string;
+  placeholder?: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
