@@ -1,14 +1,26 @@
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
-import { registerRequest } from "../api/auth";
 import MySvg from "../assets/doc.svg";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function Register() {
-  const { register, handleSubmit } = useForm();
-  const { signup } = useAuth();
+  const { register, handleSubmit, formState:{
+    errors
+  }} = useForm();
+  const { signup, isAuthenticated, errors: RegisterErrors} = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    if(isAuthenticated) {
+      navigate ('/profile')
+    }
+  }, [isAuthenticated])
 
   return (
     <div className="min-h-screen flex items-center justify-center">
+
+      
       <div className="bg-slate-200 w-1/3 p-10 rounded-md">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
@@ -24,6 +36,7 @@ function Register() {
         <form
           onSubmit={handleSubmit(async (values) => {
             signup(values);
+            
             // values.id = Number(values.id);
             // const res = await registerRequest(values);
             // console.log(res);
