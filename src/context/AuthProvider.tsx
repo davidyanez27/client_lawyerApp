@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { AuthContext } from "./AuthContext";
-import { registerRequest } from "../api/auth";
+import { registerRequest, loginRequest } from "../api/auth";
 import { User, ValidationError } from "../interfaces/interfaces";
 
 interface props {
@@ -21,17 +21,30 @@ export const AuthProvider = ({ children }: props) => {
       setUSer(res.data);
       setIsAuthenticated(true);
     } catch (error) {
-      console.log((error as ValidationError).response.data.message);
-      console.log(typeof(error as ValidationError).response.data.message);
+      // console.log((error as ValidationError).response.data.message);
+      // console.log(typeof(error as ValidationError).response.data.message);
       setErrors((error as ValidationError).response.data.message);
 
     }
   };
 
+
+  const signin = async (values: User) =>{
+    try {
+      const res = await loginRequest(values);
+      console.log(res)
+    } catch (error) {
+      console.log((error as ValidationError).response.data);
+    }
+  }
+
+
+
   return (
     <AuthContext.Provider
       value={{
         signup,
+        signin,
         user,
         isAuthenticated, 
         errors,

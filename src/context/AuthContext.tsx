@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from "react";
 
 export const AuthContext = createContext<{
     signup?: any;
+    signin?:any;
     user?: object;
     isAuthenticated?: boolean;
     errors?:any;

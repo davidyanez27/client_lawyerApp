@@ -5,24 +5,24 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 function Register() {
-  const { register, handleSubmit, formState:{
-    errors
-  }} = useForm();
-  const { signup, isAuthenticated, errors: RegisterErrors} = useAuth();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { signup, isAuthenticated, errors: RegisterErrors } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    if(isAuthenticated) {
-      navigate ('/profile')
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/profile");
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated]);
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-
-      
-      <div className="bg-slate-200 w-1/3 p-10 rounded-md">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="bg-slate-200 w-1/3 p-10 rounded-md sm:mx-auto sm:w-full sm:max-w-sm">
+        <div className="">
           <img
             className="mx-auto h-10 w-auto"
             src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
@@ -36,13 +36,19 @@ function Register() {
         <form
           onSubmit={handleSubmit(async (values) => {
             signup(values);
-            
+
             // values.id = Number(values.id);
             // const res = await registerRequest(values);
             // console.log(res);
           })}
         >
           <div>
+            {RegisterErrors.map((error: string, i: number) => (
+              <div className="bg-red-500" key={i}>
+                {error}
+              </div>
+            ))}
+
             <label
               htmlFor="id"
               className="block text-sm font-medium leading-6 text-gray-900"
@@ -134,14 +140,14 @@ function Register() {
         <p className="mt-10 text-center text-sm text-gray-500">
           Have a account?{" "}
           <a
-            href="#"
+            href="/login"
             className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
           >
             Sign in
           </a>
         </p>
       </div>
-      <div className=" p-4 m-2">
+      <div className="hidden md:block p-4 m-2 md:w-1/2">
         <img src={MySvg} />
       </div>
     </div>
