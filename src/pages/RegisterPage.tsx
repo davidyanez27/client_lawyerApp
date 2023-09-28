@@ -21,14 +21,9 @@ function Register() {
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="bg-slate-200 w-1/3 p-10 rounded-md sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="bg-slate-200 w-1/3 p-10 m-10 rounded-md sm:w-2/3 md:w-1/2 lg:w-1/3 ">
         <div className="">
-          <img
-            className="mx-auto h-10 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt="Your Company"
-          />
-          <h2 className="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          <h2 className="mb-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Register
           </h2>
         </div>
@@ -147,7 +142,7 @@ function Register() {
           </a>
         </p>
       </div>
-      <div className="hidden md:block p-4 m-2 md:w-1/2">
+      <div className="hidden md:block p-4 m-2 sm:w-1/3 md:w-1/2">
         <img src={MySvg} />
       </div>
     </div>
