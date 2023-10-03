@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
 import MySvg from "../assets/register_img.svg";
 import eye from "../assets/eye.svg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useEffect } from "react";
 
 function Register() {
@@ -11,7 +11,7 @@ function Register() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { signup, isAuthenticated, errors: RegisterErrors } = useAuth();
+  const { signup, isAuthenticated, errors: registerErrors } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,15 +31,15 @@ function Register() {
           </h2>
 
           <form
-            className="flex flex-col gap-4"
+            className="flex flex-col gap-4 items-center"
             onSubmit={handleSubmit(async (values) => {
               signup(values);
 
 
             })}
           >
-            {RegisterErrors.map((error: string, i: number) => (
-              <div className="text-red-500 text-center" key={i}>
+            {registerErrors.map((error: string, i: number) => (
+              <div className="text-red-500 text-center whitespace-normal w-[200px]" key={i}>
                 {error}
               </div>
             ))}
@@ -99,12 +99,12 @@ function Register() {
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Have a account?{" "}
-            <a
-              href="/login"
+            <Link
+              to="/login"
               className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
             >
               Sign in
-            </a>
+            </Link>
           </p>
 
         </div>

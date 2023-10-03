@@ -1,17 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { AuthContext } from "./AuthContext";
 import { registerRequest, loginRequest } from "../api/auth";
-import { User, ValidationError } from "../interfaces/interfaces";
+import { User, ValidationError, ZodError, props } from '../interfaces/interfaces';
 
-interface props {
-  children: JSX.Element | JSX.Element[];
-}
 
 export const AuthProvider = ({ children }: props) => {
   const [user, setUSer] = useState<Partial<User>>({});
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
+
+
+
+  function parseError (error: object) {
+    const typeError = (error as ValidationError).response.data.message;
+    if(typeError == undefined){
+      setErrors((error as ZodError).response.data);
+    }
+    else{
+      setErrors((error as ValidationError).response.data.message);
+    }
+  } 
+
 
   const signup = async (values: User) => {
     try {
@@ -21,10 +31,7 @@ export const AuthProvider = ({ children }: props) => {
       setUSer(res.data);
       setIsAuthenticated(true);
     } catch (error) {
-      // console.log((error as ValidationError).response.data.message);
-      // console.log(typeof(error as ValidationError).response.data.message);
-      setErrors((error as ValidationError).response.data.message);
-
+      parseError(error as object)
     }
   };
 
@@ -32,13 +39,23 @@ export const AuthProvider = ({ children }: props) => {
   const signin = async (values: User) =>{
     try {
       const res = await loginRequest(values);
-      console.log(res)
+      console.log(res);
+      setUSer(res.data);
+      setIsAuthenticated(true);
     } catch (error) {
-      console.log((error as ValidationError).response.data);
+      parseError(error as object)
+
     }
   }
 
-
+  useEffect(()=>{
+    if(errors.length>0){
+      const timer = setTimeout(()=>{
+        setErrors([]);
+      },2500);
+      return () => clearTimeout(timer);
+    }
+  }, [errors]);
 
   return (
     <AuthContext.Provider

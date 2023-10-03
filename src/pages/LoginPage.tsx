@@ -1,6 +1,6 @@
 import eye from "../assets/eye.svg";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import MySvg from "../assets/login_img.svg";
 
@@ -15,7 +15,7 @@ function Login() {
     console.log(data);
   });
 
-  const { signin, isAuthenticated, errors: RegisterErrors } = useAuth();
+  const { signin, isAuthenticated, errors: signinErrors } = useAuth();
   const navigate = useNavigate();
 
   return (
@@ -29,13 +29,14 @@ function Login() {
           </h2>
 
           <form
-            className="flex flex-col gap-4"
+            className="flex flex-col gap-4 items-center"
             onSubmit={handleSubmit(async (values) => {
+              console.log(values)
               signin(values);
             })}
           >
-            {RegisterErrors.map((error: string, i: number) => (
-              <div className="text-red-500 text-center" key={i}>
+            {signinErrors.map((error: string, i: number) => (
+              <div className="text-red-500 text-center whitespace-normal w-[200px]" key={i}>
                 {error}
               </div>
             ))}
@@ -86,12 +87,12 @@ function Login() {
 
           <p className="mt-2 text-center text-sm text-gray-500">
             You do not have an account?{" "}
-            <a
-              href="/register"
+            <Link
+              to="/register"
               className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
             >
               Register
-            </a>
+            </Link>
           </p>
         </div>
 

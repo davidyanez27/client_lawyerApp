@@ -13,6 +13,12 @@ export interface ValidationError extends Error {
   };
 }
 
+export interface ZodError extends Error {
+  response: {
+    data:  string[];
+  };
+}
+
 export interface InputProps {
   type: string;
   id: string;
@@ -20,4 +26,8 @@ export interface InputProps {
   values: string;
   placeholder?: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface props {
+  children: JSX.Element | JSX.Element[];
 }
