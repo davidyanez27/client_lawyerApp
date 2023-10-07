@@ -1,9 +1,10 @@
-import { useForm } from "react-hook-form";
-import { useAuth } from "../context/AuthContext";
-import MySvg from "../assets/register_img.svg";
-import eye from "../assets/eye.svg";
 import { useNavigate, Link } from "react-router-dom";
 import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { useAuth } from "../context/AuthContext";
+
+import MySvg from "../assets/register_img.svg";
+import eye from "../assets/eye.svg";
 
 function Register() {
   const {
@@ -16,7 +17,7 @@ function Register() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/profile");
+      navigate("/home");
     }
   }, [isAuthenticated]);
 

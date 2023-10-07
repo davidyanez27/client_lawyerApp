@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 
+
 import { AuthContext } from "./AuthContext";
-import { registerRequest, loginRequest } from "../api/auth";
+import { registerRequest, loginRequest, verifyTokenRequest } from "../api/auth";
 import { User, ValidationError, ZodError, props } from '../interfaces/interfaces';
+import Cookies from "js-cookie";
 
 
 export const AuthProvider = ({ children }: props) => {
   const [user, setUSer] = useState<Partial<User>>({});
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
 
 
 
@@ -57,11 +60,48 @@ export const AuthProvider = ({ children }: props) => {
     }
   }, [errors]);
 
+  useEffect(()=>{
+    
+    async function checkLogin(){
+      const cookies = Cookies.get()
+      
+      if(!cookies.token){
+        setIsAuthenticated(false);
+        setLoading(false);
+        setUSer({});
+        return;
+      }
+
+
+        try {
+          const res = await verifyTokenRequest(cookies)
+          //console.log(res)
+          if(!res.data) {
+            setIsAuthenticated(false);
+            setLoading(false);
+            return;
+          }
+
+          setIsAuthenticated(true);
+          setUSer(res.data);
+          setLoading(false);
+        } catch (error) {
+          setIsAuthenticated(false);
+          setUSer({});
+          setLoading(false);
+        }
+
+      console.log(cookies.token);
+    }
+    checkLogin();
+  },[]);
+
   return (
     <AuthContext.Provider
       value={{
         signup,
         signin,
+        loading,
         user,
         isAuthenticated, 
         errors,

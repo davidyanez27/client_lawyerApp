@@ -4,15 +4,24 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import Home from './pages/HomePage';
 
+import ProtectedRoute from './ProtectedRoute'
 
  function App() {
   return (
     <Routes>
-      <Route path='/' element = {<Home/>}/>
+      <Route path='/' element = {<LoginPage/>}/>
       <Route path='/login' element = {<LoginPage />}/>
       <Route path='/register' element = {<RegisterPage/>}/>
-      <Route path='/profile' element = {<h1 className='text-4xl font-bold'>Profile</h1>}/>
-    </Routes>
+      
+      <Route element={<ProtectedRoute/>}>
+
+      <Route path='/home' element = {<Home/>}/>
+      <Route path='/profile' element = {<h1 className=' bg-blue-500  text-4xl font-bold'>Profile</h1>}/>
+    
+
+      </Route>
+
+      </Routes>
     
   )
 }

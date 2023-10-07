@@ -1,7 +1,9 @@
-import eye from "../assets/eye.svg";
-import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
+
+import eye from "../assets/eye.svg";
 import MySvg from "../assets/login_img.svg";
 
 function Login() {
@@ -17,6 +19,12 @@ function Login() {
 
   const { signin, isAuthenticated, errors: signinErrors } = useAuth();
   const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     navigate("/home");
+  //   }
+  // }, [isAuthenticated]);
 
   return (
     <div className="bg-slate-50 min-h-screen flex items-center justify-center">
