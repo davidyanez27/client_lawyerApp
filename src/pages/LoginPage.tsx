@@ -5,6 +5,7 @@ import { useAuth } from "../context/AuthContext";
 
 import eye from "../assets/eye.svg";
 import MySvg from "../assets/login_img.svg";
+import FormInput from "../components/FormInput";
 
 function Login() {
   const {
@@ -20,11 +21,11 @@ function Login() {
   const { signin, isAuthenticated, errors: signinErrors } = useAuth();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     navigate("/home");
-  //   }
-  // }, [isAuthenticated]);
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/home");
+    }
+  }, [isAuthenticated]);
 
   return (
     <div className="bg-slate-50 min-h-screen flex items-center justify-center">
@@ -39,35 +40,37 @@ function Login() {
           <form
             className="flex flex-col gap-4 items-center"
             onSubmit={handleSubmit(async (values) => {
-              console.log(values)
+              console.log(values);
               signin(values);
             })}
           >
             {signinErrors.map((error: string, i: number) => (
-              <div className="text-red-500 text-center whitespace-normal w-[200px]" key={i}>
+              <div
+                className="text-red-500 text-center whitespace-normal w-[200px]"
+                key={i}
+              >
                 {error}
               </div>
             ))}
-
-            <input
-              className="p-2 mt-2 rounded-xl border text-black"
-              {...register("email", { required: true })}
-              placeholder="Email"
+            <FormInput
+              values={register("email", { required: true })}
               type="email"
               name="email"
               id="email"
+              placeholder="Email"
               required
             />
+
             <div className="relative">
-              <input
-                className="p-2 mt-2 mb-8 rounded-xl border text-black w-full"
-                {...register("password", { required: true })}
-                placeholder="Password"
+              <FormInput
+                values={register("password", { required: true })}
                 type="password"
                 name="password"
                 id="password"
+                placeholder="Password"
                 required
               />
+
               <img
                 className="w-6 h-7 absolute top-9 right-3 -translate-y-5"
                 src={eye}

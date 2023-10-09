@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import arrow from "../assets/sidebar/control.png";
 import logo from "../assets/logo.png";
+import Example from "../components/Header";
 
 function Home() {
   const [open, setOpen] = useState(true);
@@ -9,9 +10,9 @@ function Home() {
     { title: "Templates", src: "chart_fill" },
     { title: "Documents", src: "folder", gap: true },
     { title: "Authorization ", src: "documento"},
+    { title: "PATH ", src: "documento" },
     { title: "Public ", src: "documento" },
     { title: "Private  ", src: "documento" },
-    { title: "PATH ", src: "documento" },
     { title: "Profile ", src: "User", gap: true },
     { title: "Setting", src: "Setting" },
   ];
@@ -30,7 +31,7 @@ function Home() {
   })
 
   return (
-    <div className=" h-screen text-black p-5 flex">
+    <div className=" bg-slate-50 h-screen text-black p-5 flex">
       <div
         className={`${
           open ? "w-72" : "w-28"
@@ -69,8 +70,8 @@ function Home() {
           ))}
         </ul>
       </div>
-      <div className="bg-blue-500 w-full ml-10 rounded-2xl">
-            Otro
+      <div className="bg-slate-200 w-full rounded-2xl items-center ">
+            <Example/>
       </div>
     </div>
   );
