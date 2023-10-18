@@ -70,7 +70,7 @@ function Home() {
           ))}
         </ul>
       </div>
-      <div className="bg-slate-200 w-full rounded-2xl items-center ">
+      <div className="flex bg-slate-200 w-full rounded-2xl items-center justify-center ">
             <Example/>
       </div>
     </div>
