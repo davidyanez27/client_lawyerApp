@@ -28,10 +28,10 @@ const FormInput: React.FC<Props> = ({
 }) => {
   return (
     <div className="grid gap-2">
-      <label className={`uppercase tracking-wide text-black text-xs font-bold p-2 mt-2 ${labelClass || ""}`}
+      {/* <label className={`uppercase tracking-wide text-black text-xs font-bold p-2 mt-2 ${labelClass || ""}`}
       >
         {labelName}
-      </label>
+      </label> */}
 
       <input
         className={`p-2 mt-1 mb-3 rounded-xl border text-black ${className || ""}`}

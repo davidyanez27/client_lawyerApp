@@ -19,11 +19,53 @@ export default function Example() {
           <div className="md:w-1/2 px-3 ">
             <FormInput
               labelName="Información del padre"
-              values={register("Father Name", { required: true })}
+              values={register("name", { required: true })}
               type="text"
-              name="father_name"
-              id="father_name"
-              placeholder="Nombre"
+              name="name"
+              id="name"
+              placeholder="Nombre del padre"
+              required
+            />
+
+            <FormInput
+              labelClass="hidden"
+              values={register("address", { required: true })}
+              type="text"
+              name="address"
+              id="address"
+              placeholder="Domicilio"
+              required
+            />
+
+            <FormInput
+              labelClass="hidden"
+              values={register("id", { required: true })}
+              type="text"
+              name="id"
+              id="id"
+              placeholder="ID"
+              required
+            />
+
+            <select
+              className="p-2 mt-1 mb-3 rounded-xl border text-black"
+              id="maritalState"
+            >
+              <option></option>
+              <option>soltero</option>
+              <option>soltero en union libre</option>
+              <option>casado</option>
+            </select>
+          </div>
+
+          <div className="md:w-1/2 px-3 ">
+            <FormInput
+              labelName="Información de la madre"
+              values={register("name1", { required: true })}
+              type="text"
+              name="madre"
+              id="madre"
+              placeholder="Nombre de la madre"
               required
             />
 
@@ -37,21 +79,8 @@ export default function Example() {
               required
             />
 
-            {/* <FormInput
-              labelClass="hidden"
-              values={register("ID", { required: true })}
-              type="text"
-              name="father_ID"
-              id="father_ID"
-              placeholder="ID"
-              required
-            /> */}
-          </div>
-
-          <div className="md:w-1/2 mx-2">
             <FormInput
-              labelName="0"
-              labelClass="text-white"
+              labelClass="hidden"
               values={register("ID", { required: true })}
               type="text"
               name="father_ID"
@@ -74,47 +103,39 @@ export default function Example() {
 
         <div className="-mx-3 md:flex mb-2">
           <div className="md:w-1/2 px-3 mb-6 md:mb-0">
-            <label className="uppercase tracking-wide text-black text-xs font-bold mb-2">
-              Location*
-            </label>
-            <div>
-              <select
-                className="w-full bg-gray-200 border border-gray-200 text-black text-xs py-3 px-4 pr-8 mb-3 rounded"
-                id="location"
-              >
-                <option>Abuja</option>
-                <option>Enugu</option>
-                <option>Lagos</option>
-              </select>
-            </div>
+            <FormInput
+              // labelName="Información del menor"
+              values={register("son_name", { required: true })}
+              type="text"
+              name="son_name"
+              id="son_name"
+              placeholder="Nombre del menor"
+              required
+            />
           </div>
           <div className="md:w-1/2 px-3">
-            <label className="uppercase tracking-wide text-black text-xs font-bold mb-2">
-              Job Type*
-            </label>
-            <div>
-              <select
-                className="w-full bg-gray-200 border border-gray-200 text-black text-xs py-3 px-4 pr-8 mb-3 rounded"
-                id="job-type"
-              >
-                <option>Full-Time</option>
-                <option>Part-Time</option>
-                <option>Internship</option>
-              </select>
-            </div>
+            <FormInput
+              // labelName="1"
+              labelClass="text-white"
+              values={register("ID", { required: true })}
+              type="text"
+              name="father_ID"
+              id="father_ID"
+              placeholder="ID"
+              required
+            />
           </div>
           <div className="md:w-1/2 px-3">
-            <label className="uppercase tracking-wide text-black text-xs font-bold mb-2">
-              Department*
-            </label>
+
             <div>
               <select
-                className="w-full bg-gray-200 border border-gray-200 text-black text-xs py-3 px-4 pr-8 mb-3 rounded"
-                id="department"
+                className="p-2 mt-1 mb-3 rounded-xl border text-black"
+                id="maritalState"
               >
-                <option>Engineering</option>
-                <option>Design</option>
-                <option>Customer Support</option>
+                <option></option>
+                <option>soltero</option>
+                <option>soltero en union libre</option>
+                <option>casado</option>
               </select>
             </div>
           </div>
