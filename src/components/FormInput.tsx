@@ -27,22 +27,50 @@ const FormInput: React.FC<Props> = ({
   labelClass,
 }) => {
   return (
-    <div className="grid gap-2">
-      {/* <label className={`uppercase tracking-wide text-black text-xs font-bold p-2 mt-2 ${labelClass || ""}`}
+    <div className="sm:col-span-3">
+      <label
+        className={`block text-sm font-medium leading-6 text-gray-900 uppercase mb-3  ${
+          labelClass || ""
+        }`}
       >
         {labelName}
-      </label> */}
+      </label>
 
-      <input
-        className={`p-2 mt-1 mb-3 rounded-xl border text-black ${className || ""}`}
-        {...values}
-        type={type}
-        name={name}
-        id={id}
-        placeholder={placeholder}
-        required={required}
-      />
+    
+
+      <div className="mt-2">
+        <input
+          className={`block w-full rounded-md border-0 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6${
+            className || ""
+          }`}
+          {...values}
+          type={type}
+          name={name}
+          id={id}
+          placeholder={placeholder}
+          required={required}          
+        />
+
+
+      </div>
     </div>
+
+    // <div className="grid gap-2">
+    //   <label className={`uppercase tracking-wide text-black text-xs font-bold p-2 mt-2 ${labelClass || ""}`}
+    //   >
+    //     {labelName}
+    //   </label>
+
+    //   <input
+    //     className={`p-2 mt-1 mb-3 rounded-xl border text-black ${className || ""}`}
+    //     {...values}
+    //     type={type}
+    //     name={name}
+    //     id={id}
+    //     placeholder={placeholder}
+    //     required={required}
+    //   />
+    // </div>
   );
 };
 
