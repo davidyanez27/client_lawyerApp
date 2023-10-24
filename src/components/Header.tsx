@@ -13,96 +13,173 @@ export default function Example() {
   });
 
   return (
-    <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 space-y-12 ">
-      <div className="border-b border-gray-900/10 pb-12">
-        <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6">
-          <div className="sm:col-span-4">
-            <div className="mt-2">
-              <FormInput
-                labelName="Información del padre"
-                values={register("name", { required: true })}
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Nombre del padre"
-                required
-              />
-            </div>
-            
-          </div>
-{/* 
-          <div className="sm:col-span-3">
-            <label
-              htmlFor="last-name"
-              className="block text-sm font-medium leading-6 text-gray-900"
-            >
-              Last name
-            </label>
-            <div className="mt-2">
-              <input
-                type="text"
-                name="last-name"
-                id="last-name"
-                autoComplete="family-name"
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div> */}
+    <form className="bg-white rounded-md p-4 space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Left Side */}
+        <div className="p-4">
+          <FormInput
+            labelName="Información del padre"
+            values={register("name", { required: true })}
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Nombre del padre"
+            required
+          />
 
+          <FormInput
+            labelClass="hidden"
+            values={register("address", { required: true })}
+            type="text"
+            name="address"
+            id="address"
+            placeholder="Domicilio"
+            required
+          />
 
+          <FormInput
+            labelClass="hidden"
+            values={register("id", { required: true })}
+            type="text"
+            name="id"
+            id="id"
+            placeholder="ID"
+            required
+          />
 
-          <div className="sm:col-span-4">
-            <div className="mt-2">
-              <FormInput
-                labelClass="hidden"
-                values={register("address", { required: true })}
-                type="text"
-                name="address"
-                id="address"
-                placeholder="Domicilio"
-                required
-              />
-            </div>
-          </div>
-
-          <div className="col-span-4">
-            <div className="mt-2">
-            <FormInput
-              labelClass="hidden"
-              values={register("id", { required: true })}
-              type="text"
-              name="id"
-              id="id"
-              placeholder="ID"
-              required
-            />
-            </div>
-          </div>
-
-
-
-          <div className="sm:col-span-3">
-            <div className="mt-2">
-              <select
-                id="country"
-                name="country"
-                autoComplete="country-name"
-                className="block w-full rounded-md border-0 p-1.5 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6"
-              >
-                <option>soltero</option>
-                <option>casado</option>
-                <option>union libre</option>
-              </select>
-            </div>
-          </div>
-
+          <select
+            className="p-2 mt-2 rounded-xl border text-black"
+            id="maritalState"
+          >
+            <option></option>
+            <option>soltero</option>
+            <option>soltero en union libre</option>
+            <option>casado</option>
+          </select>
         </div>
 
-        
+        {/* Right Side */}
+        <div className="p-4">
+          <FormInput
+            labelName="Información de la madre"
+            values={register("name1", { required: true })}
+            type="text"
+            name="madre"
+            id="madre"
+            placeholder="Nombre de la madre"
+            required
+          />
 
-        
+          <FormInput
+            labelClass="hidden"
+            values={register("address", { required: true })}
+            type="text"
+            name="father_address"
+            id="father_address"
+            placeholder="Domicilio"
+            required
+          />
+
+          <FormInput
+            labelClass="hidden"
+            values={register("ID", { required: true })}
+            type="text"
+            name="father_ID"
+            id="father_ID"
+            placeholder="ID"
+            required
+          />
+
+          <select
+            className="p-2 mt-2 rounded-xl border text-black"
+            id="maritalState"
+          >
+            <option></option>
+            <option>soltero</option>
+            <option>soltero en union libre</option>
+            <option>casado</option>
+          </select>
+        </div>
       </div>
-    </div>
+
+      <div className="md:flex px-4">
+        <div className="w-1/3 mx-2">
+          <FormInput
+            labelName="Menor"
+            values={register("son_name", { required: true })}
+            type="text"
+            name="son_name"
+            id="son_name"
+            placeholder="Nombre del menor"
+            required
+          />
+        </div>
+        <div className="w-1/3 mx-2">
+          <FormInput
+            labelName="1"
+            labelClass="text-white"
+            values={register("son_name", { required: true })}
+            type="text"
+            name="son_name"
+            id="son_name"
+            placeholder="Nombre del menor"
+            required
+          />
+        </div>
+        <div className="w-1/3 mx-2">
+          <FormInput
+            labelName="1"
+            labelClass="text-white"
+            values={register("son_name", { required: true })}
+            type="text"
+            name="son_name"
+            id="son_name"
+            placeholder="Nombre del menor"
+            required
+          />
+        </div>
+      </div>
+
+      <div className="flex px-4">
+        <div className="w-1/3 mx-2">
+          <FormInput
+            values={register("son_name", { required: true })}
+            type="text"
+            name="son_name"
+            id="son_name"
+            placeholder="Nombre del menor"
+            required
+          />
+        </div>
+        <div className="w-1/3 mx-2">
+          <FormInput
+            values={register("son_name", { required: true })}
+            type="text"
+            name="son_name"
+            id="son_name"
+            placeholder="Nombre del menor"
+            required
+          />
+        </div>
+        <div className="w-1/3 mx-2">
+          <FormInput
+            values={register("son_name", { required: true })}
+            type="text"
+            name="son_name"
+            id="son_name"
+            placeholder="Nombre del menor"
+            required
+          />
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        className="flex w-1/3 mx-auto py-2 justify-center rounded-xl bg-gray-400 uppercase text-white hover:scale-110 duration-300"
+      >
+        Create 
+      </button>
+    </form>
 
     // <form className="w-5/6">
     //   <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
