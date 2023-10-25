@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import arrow from "../assets/sidebar/control.png";
 import logo from "../assets/logo.png";
 import Example from "../components/Header";
+import Form1 from "../components/form";
 
 function Home() {
   const [open, setOpen] = useState(true);

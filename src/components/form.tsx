@@ -3,7 +3,6 @@ import React from 'react'
 function Form1() {
   return (
 
-    <div className="bg-gray-100 mx-auto max-w-6xl bg-white py-20 px-12 lg:px-24 shadow-xl mb-24">
 
     <form>
     <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
@@ -81,7 +80,6 @@ function Form1() {
       </div>
     </div>
   </form>
-</div>
   )
 }
 
