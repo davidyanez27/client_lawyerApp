@@ -14,9 +14,10 @@ function Login() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
-  });
+  const onSubmit = handleSubmit(async (values) => {
+      console.log(values);
+      signin(values);
+    });
 
   const { signin, isAuthenticated, errors: signinErrors } = useAuth();
   const navigate = useNavigate();
@@ -39,10 +40,7 @@ function Login() {
 
           <form
             className="flex flex-col gap-4 items-center"
-            onSubmit={handleSubmit(async (values) => {
-              console.log(values);
-              signin(values);
-            })}
+            onSubmit={onSubmit}
           >
             {signinErrors.map((error: string, i: number) => (
               <div

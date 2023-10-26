@@ -36,7 +36,6 @@ function Register() {
             onSubmit={handleSubmit(async (values) => {
               signup(values);
 
-
             })}
           >
             {registerErrors.map((error: string, i: number) => (
