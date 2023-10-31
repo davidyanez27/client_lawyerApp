@@ -1,35 +1,53 @@
 import { useEffect, useState } from "react";
 import arrow from "../assets/sidebar/control.png";
 import logo from "../assets/logo.png";
-import Example from "../components/Header";
+//import Example from "../components/example";
 import Form1 from "../components/form";
+import Example from "../components/example";
+import AutorizathionForm from "../components/autorizathionForm";
+
+
+
 
 function Home() {
   const [open, setOpen] = useState(true);
+  const [selectedMenu, setSelectedMenu] = useState("");
+
   const Menus = [
-    { title: "Search", src: "Search" },
-    { title: "Templates", src: "chart_fill" },
-    { title: "Documents", src: "folder", gap: true },
-    { title: "Authorization ", src: "documento"},
-    { title: "PATH ", src: "documento" },
-    { title: "Public ", src: "documento" },
-    { title: "Private  ", src: "documento" },
-    { title: "Profile ", src: "User", gap: true },
-    { title: "Setting", src: "Setting" },
+    { title: "Search", src: "Search", template:"template"},
+    { title: "Templates", src: "chart_fill", template:"templates" },
+    { title: "Documents", src: "folder", template:"documents", gap: true },
+    { title: "Authorization ", src: "documento", template:"autorizathion.docx" },
+    { title: "PATH ", src: "documento", template:"PATH.docx" },
+    { title: "Public ", src: "documento", template:"public.docx" },
+    { title: "Private  ", src: "documento", template:"private.docx" },
+    { title: "Profile ", src: "User", template:"profile", gap: true },
+    { title: "Setting", src: "Setting", template:"setting"},
   ];
+
+  //Render the component
+  const renderComponentBasedOnMenu = () => {
+    switch (selectedMenu) {
+      case 'autorizathion.docx':
+        return <AutorizathionForm/>;
+
+      default:
+        return <Form1/>;
+    }
+  }
 
   // Auto close menu when on mobile
   const handleResize = () => {
     if (window.innerWidth < 720) {
-      setOpen(false)
+      setOpen(false);
     } else {
-      setOpen(true)
+      setOpen(true);
     }
-  }
+  };
 
   useEffect(() => {
-    window.addEventListener("resize",handleResize)
-  })
+    window.addEventListener("resize", handleResize);
+  });
 
   return (
     <div className=" bg-slate-50 h-screen text-black p-5 flex">
@@ -63,16 +81,26 @@ function Home() {
           {Menus.map((menu, index) => (
             <li
               key={index}
-              className={`text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md ${menu.gap ? "mt-9": "mt-2"}`}
-            >   
-              <img src={`./src/assets/sidebar/${menu.src}.png`}/>
-              <span className={`${!open && 'hidden'} origin-left duration-200`}>{menu.title}</span>
+              className={`text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md ${
+                menu.gap ? "mt-9" : "mt-2"
+              }`}
+            >
+              <img src={`./src/assets/sidebar/${menu.src}.png`} />
+              <span
+                onClick={() => {
+                  setSelectedMenu(menu.template);
+                  console.log(selectedMenu)
+                }}
+                className={`${!open && "hidden"} origin-left duration-200`}
+              >
+                {menu.title}
+              </span>
             </li>
           ))}
         </ul>
       </div>
       <div className="flex bg-slate-200 w-full rounded-2xl items-center justify-center ">
-            <Example/>
+        {renderComponentBasedOnMenu()}
       </div>
     </div>
   );

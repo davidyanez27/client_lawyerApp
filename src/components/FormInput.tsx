@@ -13,6 +13,7 @@ interface Props {
   className?: string;
   labelName?: string;
   labelClass?: string;
+  onChange?:any;
 }
 
 const FormInput: React.FC<Props> = ({
@@ -25,6 +26,7 @@ const FormInput: React.FC<Props> = ({
   className,
   labelName,
   labelClass,
+  onChange
 }) => {
   return (
     <div className="sm:col-span-3">
@@ -40,7 +42,7 @@ const FormInput: React.FC<Props> = ({
 
       <div className="mt-2">
         <input
-          className={`block w-full rounded-md border-0 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6${
+          className={`block w-full rounded-md border-0 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 text-black${
             className || ""
           }`}
           {...values}
@@ -48,7 +50,8 @@ const FormInput: React.FC<Props> = ({
           name={name}
           id={id}
           placeholder={placeholder}
-          required={required}          
+          required={required}
+          onChange={onChange}          
         />
 
 

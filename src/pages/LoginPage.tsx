@@ -61,6 +61,7 @@ function Login() {
 
             <div className="relative">
               <FormInput
+             
                 values={register("password", { required: true })}
                 type="password"
                 name="password"
@@ -80,7 +81,7 @@ function Login() {
               type="submit"
               className="flex w-3/4 mx-auto justify-center rounded-xl bg-gray-600 py-2 hover:scale-110 duration-300"
             >
-              Register
+              Login
             </button>
           </form>
 
