@@ -3,7 +3,7 @@ import FormInput from "./FormInput";
 
 import { CreateDocument } from "../api/auth";
 
-export default function PATHDocumentForm() {
+export default function PrivateDocumentForm() {
   const oneFatherTwoSons = {
     templateName: "autorizathion.docx",
     pronoun: "Yo",
@@ -133,7 +133,7 @@ export default function PATHDocumentForm() {
           "block text-lg font-medium leading-6 text-gray-900 uppercase text-center py-4"
         }
       >
-        Formulario de Documento PATH
+        Formulario de Documento Privado
       </label>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -206,7 +206,7 @@ export default function PATHDocumentForm() {
         <div className="px-4 py-2">
           <FormInput
             className="uppercase"
-            labelName="Información de la madre"
+            labelName="Información del viaje"
             values={register("name1")}
             type="text"
             name="name1"

@@ -128,9 +128,15 @@ export default function AutorizathionForm() {
       className="bg-white shadow-md rounded-md p-4 space-y-4"
       onSubmit={onSubmit}
     >
+      <label
+        className={"block text-lg font-medium leading-6 text-gray-900 uppercase text-center py-4"}
+      >
+        Formulario de autorizacion para salir del pais 
+      </label>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Left Side */}
-        <div className="p-4">
+        <div className="px-4 py-2">
           <FormInput
             className="uppercase"
             labelName="Información del padre"
@@ -195,10 +201,10 @@ export default function AutorizathionForm() {
         </div>
 
         {/* Right Side */}
-        <div className="p-4">
+        <div className="px-4 py-2">
           <FormInput
             className="uppercase"
-            labelName="Información del viaje"
+            labelName="Información de la madre"
             values={register("name1")}
             type="text"
             name="name1"
@@ -340,7 +346,8 @@ export default function AutorizathionForm() {
       <div className="flex px-2">
         <div className="w-1/3 mx-2">
           <FormInput
-            labelName="INFORMACION GENERAL"
+            className="uppercase"
+            labelName="Información general"
             values={register("document_name", { required: true })}
             type="text"
             name="document_name"
@@ -387,7 +394,7 @@ export default function AutorizathionForm() {
         </div>
       </div>
 
-      <div className="flex px-2">
+      <div className="flex px-2 pb-4">
         <div className="w-1/3 mx-2">
           <FormInput
             values={register("city", { required: true })}

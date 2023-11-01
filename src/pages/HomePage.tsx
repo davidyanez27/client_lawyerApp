@@ -1,40 +1,49 @@
 import { useEffect, useState } from "react";
 import arrow from "../assets/sidebar/control.png";
 import logo from "../assets/logo.png";
-//import Example from "../components/example";
+
 import Form1 from "../components/form";
-import Example from "../components/example";
-import AutorizathionForm from "../components/autorizathionForm";
-
-
-
+import AutorizathionForm from "../components/AutorizathionForm";
+import PublicDocumentForm from "../components/PublicDocumentForm";
+import PATHDocumentForm from "../components/PATHDocumentForm";
+import PrivateDocumentForm from "../components/PrivateDocumentForm";
 
 function Home() {
   const [open, setOpen] = useState(true);
   const [selectedMenu, setSelectedMenu] = useState("");
 
   const Menus = [
-    { title: "Search", src: "Search", template:"template"},
-    { title: "Templates", src: "chart_fill", template:"templates" },
-    { title: "Documents", src: "folder", template:"documents", gap: true },
-    { title: "Authorization ", src: "documento", template:"autorizathion.docx" },
-    { title: "PATH ", src: "documento", template:"PATH.docx" },
-    { title: "Public ", src: "documento", template:"public.docx" },
-    { title: "Private  ", src: "documento", template:"private.docx" },
-    { title: "Profile ", src: "User", template:"profile", gap: true },
-    { title: "Setting", src: "Setting", template:"setting"},
+    { title: "Search", src: "Search", template: "template" },
+    { title: "Templates", src: "chart_fill", template: "templates" },
+    { title: "Documents", src: "folder", template: "documents", gap: true },
+    {
+      title: "Authorization ",
+      src: "documento",
+      template: "autorizathion.docx",
+    },
+    { title: "PATH ", src: "documento", template: "PATH.docx" },
+    { title: "Public ", src: "documento", template: "public.docx" },
+    { title: "Private  ", src: "documento", template: "private.docx" },
+    { title: "Profile ", src: "User", template: "profile", gap: true },
+    { title: "Setting", src: "Setting", template: "setting" },
   ];
 
   //Render the component
   const renderComponentBasedOnMenu = () => {
     switch (selectedMenu) {
-      case 'autorizathion.docx':
-        return <AutorizathionForm/>;
+      case "autorizathion.docx":
+        return <AutorizathionForm />;
+      case "PATH.docx":
+        return <PATHDocumentForm/>;
+      case "public.docx":
+        return <PublicDocumentForm />;
+      case "private.docx":
+        return <PrivateDocumentForm />;
 
       default:
-        return <Form1/>;
+        return <Form1 />;
     }
-  }
+  };
 
   // Auto close menu when on mobile
   const handleResize = () => {
@@ -89,7 +98,7 @@ function Home() {
               <span
                 onClick={() => {
                   setSelectedMenu(menu.template);
-                  console.log(selectedMenu)
+                  console.log(selectedMenu);
                 }}
                 className={`${!open && "hidden"} origin-left duration-200`}
               >
