@@ -7,13 +7,16 @@ import AutorizathionForm from "../components/AutorizathionForm";
 import PublicDocumentForm from "../components/PublicDocumentForm";
 import PATHDocumentForm from "../components/PATHDocumentForm";
 import PrivateDocumentForm from "../components/PrivateDocumentForm";
+import DocumentsCard from "../components/DocumentsCard";
+import TemplateCard from "../components/TemplateCard";
+import SearchCard from "../components/SearchCard";
 
 function Home() {
   const [open, setOpen] = useState(true);
   const [selectedMenu, setSelectedMenu] = useState("");
 
   const Menus = [
-    { title: "Search", src: "Search", template: "template" },
+    { title: "Search", src: "Search", template: "search" },
     { title: "Templates", src: "chart_fill", template: "templates" },
     { title: "Documents", src: "folder", template: "documents", gap: true },
     {
@@ -21,9 +24,9 @@ function Home() {
       src: "documento",
       template: "autorizathion.docx",
     },
-    { title: "PATH ", src: "documento", template: "PATH.docx" },
     { title: "Public ", src: "documento", template: "public.docx" },
-    { title: "Private  ", src: "documento", template: "private.docx" },
+    { title: "PATH ", src: "documento", template: "PATH.docx" },
+    // { title: "Private  ", src: "documento", template: "private.docx" },
     { title: "Profile ", src: "User", template: "profile", gap: true },
     { title: "Setting", src: "Setting", template: "setting" },
   ];
@@ -31,6 +34,12 @@ function Home() {
   //Render the component
   const renderComponentBasedOnMenu = () => {
     switch (selectedMenu) {
+      case "search":
+        return <SearchCard/>;
+      case "templates":
+        return <TemplateCard/>;
+        case "documents":
+          return <DocumentsCard/>;
       case "autorizathion.docx":
         return <AutorizathionForm />;
       case "PATH.docx":
@@ -41,7 +50,7 @@ function Home() {
         return <PrivateDocumentForm />;
 
       default:
-        return <Form1 />;
+        return <SearchCard/>;
     }
   };
 

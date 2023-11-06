@@ -4,85 +4,7 @@ import FormInput from "./FormInput";
 import { CreateDocument } from "../api/auth";
 
 export default function PATHDocumentForm() {
-  const oneFatherTwoSons = {
-    templateName: "autorizathion.docx",
-    pronoun: "Yo",
-    age_pronoun: "mayor de edad",
-    beg_pronoun: "ruego",
-    country_pronoun: "mi",
-    extend_pronoun: "extiendo",
-    signature_pronoun: "firmo",
-    authorization: "autorizacion",
-    "F)": "",
-    son_pronoun: "hijos",
-    can: "puedan",
-    travel_pronoun: "viajen",
-    and: "y",
-  };
-
-  const oneFatherOneSon = {
-    templateName: "autorizathion.docx",
-    pronoun: "Yo",
-    age_pronoun: "mayor de edad",
-    beg_pronoun: "ruego",
-    country_pronoun: "mi",
-    extend_pronoun: "extiendo",
-    signature_pronoun: "firmo",
-    authorization: "autorizacion",
-    "F)": "",
-    son_pronoun: "hijo",
-    can: "pueda",
-    travel_pronoun: "viaje",
-    and: "",
-  };
-
-  const twoFathersTwoSons = {
-    templateName: "autorizathion.docx",
-    age_pronoun: "mayor de edad",
-    pronoun: "Nosotros",
-    beg_pronoun: "rogamos",
-    country_pronoun: "nuestro",
-    extend_pronoun: "extendemos",
-    signature_pronoun: "firmamos",
-    authorization: "autorizacion",
-    "F)": "F",
-    son_pronoun: "hijos",
-    can: "puedan",
-    travel_pronoun: "viajen",
-    and: "y",
-  };
-
-  const twoFathersOneSons = {
-    templateName: "autorizathion.docx",
-    age_pronoun: "mayor de edad",
-    pronoun: "Nosotros",
-    beg_pronoun: "rogamos",
-    country_pronoun: "nuestro",
-    extend_pronoun: "extendemos",
-    signature_pronoun: "firmamos",
-    authorization: "autorizacion",
-    "F)": "F",
-    son_pronoun: "hijo",
-    can: "pueda",
-    travel_pronoun: "viaje",
-    and: "",
-  };
-
-  let selectedObject: {
-    son_pronoun?: string;
-    can?: string;
-    travel_pronoun?: string;
-    and?: string;
-    templateName?: string;
-    pronoun?: string;
-    age_pronoun?: string;
-    beg_pronoun?: string;
-    country_pronoun?: string;
-    extend_pronoun?: string;
-    signature_pronoun?: string;
-    authorization?: string;
-    "F)"?: string;
-  };
+ 
 
   const {
     register,
@@ -90,34 +12,11 @@ export default function PATHDocumentForm() {
     formState: { errors },
   } = useForm();
 
-  const handleInputChange = (event: { target: { value: any } }) => {
-    const inputValue = event.target.value;
-
-    switch (inputValue) {
-      case "one father and one son":
-        selectedObject = oneFatherOneSon;
-        break;
-      case "two fathers and one son":
-        selectedObject = twoFathersOneSons;
-        break;
-      case "one father and two sons":
-        selectedObject = oneFatherTwoSons;
-        break;
-      case "two fathers and two son":
-        selectedObject = twoFathersTwoSons;
-        break;
-      default:
-        selectedObject = oneFatherOneSon;
-        break;
-    }
-  };
 
   const onSubmit = handleSubmit(async (values) => {
     //console.log(selectedObject);
-
     const combinedValues = {
       ...values,
-      ...selectedObject,
     };
     console.log(combinedValues);
     CreateDocument(combinedValues);
@@ -125,7 +24,7 @@ export default function PATHDocumentForm() {
 
   return (
     <form
-      className="bg-white shadow-md rounded-md p-4 space-y-4"
+      className="bg-white shadow-md rounded-md p-4 space-y-4 w-1/2"
       onSubmit={onSubmit}
     >
       <label
@@ -136,6 +35,7 @@ export default function PATHDocumentForm() {
         Formulario de Documento PATH
       </label>
 
+      {/* informacion general de los compradores */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Left Side */}
         <div className="px-4 py-2">
@@ -272,89 +172,12 @@ export default function PATHDocumentForm() {
         <div className="w-1/3 mx-2">
           <FormInput
             className="uppercase"
-            labelName="Datos del menor"
-            values={register("son_name", { required: true })}
+            labelName="Información General"
+            values={register("ubicacion", { required: true })}
             type="text"
-            name="son_name"
-            id="son_name"
-            placeholder="Nombre del menor"
-            required
-          />
-        </div>
-        <div className="w-1/3 mx-2">
-          <FormInput
-            labelName="1"
-            labelClass="text-white"
-            values={register("document_number", { required: true })}
-            type="text"
-            name="document_number"
-            id="document_number"
-            placeholder="Identidad del menor"
-            required
-          />
-        </div>
-        <div className="w-1/3 mx-2">
-          <select
-            className="p-2 mt-8 rounded-xl border text-black"
-            id="ID_son"
-            {...register("document_type")}
-          >
-            <option value={"Acta de nacimiento"}></option>
-            <option value={"Identidad"}>Identidad</option>
-            <option value={"Pasaporte"}>Pasaporte</option>
-            <option value={"Acta de nacimiento"}>Acta de nacimiento</option>
-          </select>
-        </div>
-      </div>
-
-      {/* Segundo menor */}
-      <div className="flex px-2">
-        <div className="w-1/3 mx-2 mb-4">
-          <FormInput
-            className="uppercase"
-            values={register("son_name1")}
-            type="text"
-            name="son_name1"
-            id="son_name1"
-            placeholder="Nombre del menor"
-            required={false}
-          />
-        </div>
-        <div className="w-1/3 mx-2">
-          <FormInput
-            values={register("document_number1")}
-            type="text"
-            name="document_number1"
-            id="document_number1"
-            placeholder="Identidad del menor"
-            required={false}
-          />
-        </div>
-        <div className="w-1/3 mx-2">
-          <select
-            className="p-2 mt-2 rounded-xl border text-black"
-            id="ID_son1"
-            {...register("document_type1")}
-          >
-            <option value={""}></option>
-            <option value={"Identidad"}>Identidad</option>
-            <option value={"Pasaporte"}>Pasaporte</option>
-            <option value={"Acta de nacimiento"}>Acta de nacimiento</option>
-          </select>
-        </div>
-      </div>
-
-      {/* Informacion del documento*/}
-      <div className="flex px-2">
-        <div className="w-1/3 mx-2">
-          <FormInput
-            className="uppercase"
-            labelName="Información general"
-            values={register("document_name", { required: true })}
-            type="text"
-            name="document_name"
-            id="document_name"
-            placeholder="Nombre del documento"
+            name="ubicacion"
+            id="ubicacion"
+            placeholder="Ubicacion del lote"
             required
           />
         </div>
@@ -363,71 +186,166 @@ export default function PATHDocumentForm() {
           <FormInput
             labelName="1"
             labelClass="text-white"
-            values={register("destination", { required: true })}
+            values={register("metros", { required: true })}
             type="text"
-            name="destination"
-            id="destination"
-            placeholder="Pais de destino"
+            name="metros"
+            id="metros"
+            placeholder="Area en metros"
             required
           />
         </div>
 
         <div className="w-1/3 mx-2">
-          <select
-            className="p-2 mt-8 rounded-xl border text-black text-sm"
-            id="autorizathion_type"
-            {...register("autorizathion_type")}
-            onChange={handleInputChange}
-          >
-            <option value={"one father and one son"}></option>
-            <option value={"one father and one son"}>
-              padre(1) y menor(1)
-            </option>
-            <option value={"one father and two sons"}>
-              padre(1) y menores(2)
-            </option>
-            <option value={"two fathers and one son"}>
-              padres(2) y menor(1)
-            </option>
-            <option value={"two fathers and two sons"}>
-              padres(2) y menores(2)
-            </option>
-          </select>
-        </div>
-      </div>
-
-      <div className="flex px-2 pb-4">
-        <div className="w-1/3 mx-2">
-          <FormInput
-            values={register("city", { required: true })}
+        <FormInput
+            labelName="1"
+            labelClass="text-white"
+            values={register("varas", { required: true })}
             type="text"
-            name="city"
-            id="city"
-            placeholder="ciudad de la firma"
+            name="varas"
+            id="varas"
+            placeholder="Area en varas"
             required
           />
         </div>
-        <div className="w-1/3 mx-2">
+      </div>
+
+
+      
+
+
+      {/* informacion general del lote */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {/* Left Side */}
+        <div className="px-4 py-2">
           <FormInput
-            values={register("department", { required: true })}
+            className="uppercase"
+            labelName="Colindancias"
+            values={register("rumbo1")}
             type="text"
-            name="department"
-            id="department"
-            placeholder="departamento"
-            required={false}
+            name="rumbo1"
+            id="rumbo1"
+            placeholder="Rumbo (1-2)"
+            required
           />
+
+          <FormInput
+            values={register("rumbo2")}
+            type="text"
+            name="rumbo2"
+            id="rumbo2"
+            placeholder="Rumbo (2-3)"
+            required
+          />
+
+          <FormInput
+            values={register("rumbo3")}
+            type="text"
+            name="rumbo3"
+            id="rumbo3"
+            placeholder="Rumbo (3-4)"
+            required
+          />
+
+          <FormInput
+          
+            values={register("rumbo4")}
+            type="text"
+            name="rumbo4"
+            id="rumbo4"
+            placeholder="Rumbo (4-1)"
+            required
+          />
+
         </div>
-        <div className="w-1/3 mx-2">
-          <FormInput
-            values={register("date", { required: true })}
+
+        {/* Central Side */}
+        <div className="px-4 py-2">
+        <FormInput
+            labelClass="text-white"
+            labelName="Colindancias"
+            values={register("Norte")}
             type="text"
-            name="date"
-            id="date"
-            placeholder="dia"
-            required={false}
+            name="Norte"
+            id="Norte"
+            placeholder="Norte"
+            required
           />
+
+          <FormInput
+            values={register("Sur")}
+            type="text"
+            name="Sur"
+            id="Sur"
+            placeholder="Sur"
+            required
+          />
+
+          <FormInput
+            values={register("Este")}
+            type="text"
+            name="Este"
+            id="Este"
+            placeholder="Este"
+            required
+          />
+
+          <FormInput
+          
+            values={register("Oeste")}
+            type="text"
+            name="Oeste"
+            id="Oeste"
+            placeholder="Oeste"
+            required
+          /> 
+        </div>
+
+                {/* right Side */}
+                <div className="px-4 py-2">
+          <FormInput
+            labelClass="text-white"
+            labelName="1"
+            values={register("colindante_norte")}
+            type="text"
+            name="colindante_norte"
+            id="colindante_norte"
+            placeholder="Colindante Norte"
+            required
+          />
+
+          <FormInput
+            values={register("colindante_sur")}
+            type="text"
+            name="colindante_sur"
+            id="colindante_sur"
+            placeholder="colindante Sur"
+            required
+          />
+
+          <FormInput
+            values={register("colindante_este")}
+            type="text"
+            name="colindante_este"
+            id="colindante_este"
+            placeholder="Colindante Este"
+            required
+          />
+
+          <FormInput
+          
+            values={register("colindante_oeste")}
+            type="text"
+            name="colindante_oeste"
+            id="colindante_oeste"
+            placeholder="Colindante Oeste"
+            required
+          />
+
         </div>
       </div>
+
+
+      
 
       <button
         type="submit"
