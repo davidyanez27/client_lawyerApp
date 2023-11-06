@@ -3,13 +3,14 @@ import arrow from "../assets/sidebar/control.png";
 import logo from "../assets/logo.png";
 
 import Form1 from "../components/form";
-import AutorizathionForm from "../components/AutorizathionForm";
+// import AutorizathionForm from "../components/AutorizathionForm";
 import PublicDocumentForm from "../components/PublicDocumentForm";
 import PATHDocumentForm from "../components/PATHDocumentForm";
 import PrivateDocumentForm from "../components/PrivateDocumentForm";
 import DocumentsCard from "../components/DocumentsCard";
 import TemplateCard from "../components/TemplateCard";
 import SearchCard from "../components/SearchCard";
+import AutorizathionForm from "../components/autorizathionForm";
 
 function Home() {
   const [open, setOpen] = useState(true);
