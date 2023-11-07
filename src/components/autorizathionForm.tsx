@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import FormInput from "./FormInput";
 
 import { CreateDocument } from "../api/auth";
-import GeneralForm from "./GeneralForm";
+
 import { useState } from "react";
 import Modal from "./Modal";
 
@@ -17,9 +17,9 @@ export default function AutorizathionForm() {
     country_pronoun: "mi",
     extend_pronoun: "extiendo",
     signature_pronoun: "firmo",
-    authorization: "autorizacion",
+    document: "AUTORIZO",
     "F)": "",
-    son_pronoun: "hijos",
+    son_pronoun: " mis hijos",
     can: "puedan",
     travel_pronoun: "viajen",
     and: "y",
@@ -33,9 +33,9 @@ export default function AutorizathionForm() {
     country_pronoun: "mi",
     extend_pronoun: "extiendo",
     signature_pronoun: "firmo",
-    authorization: "autorizacion",
+    document: "AUTORIZO",
     "F)": "",
-    son_pronoun: "hijo",
+    son_pronoun: "mi hijo",
     can: "pueda",
     travel_pronoun: "viaje",
     and: "",
@@ -49,9 +49,9 @@ export default function AutorizathionForm() {
     country_pronoun: "nuestro",
     extend_pronoun: "extendemos",
     signature_pronoun: "firmamos",
-    authorization: "autorizacion",
-    "F)": "F",
-    son_pronoun: "hijos",
+    document: "AUTORIZAMOS",
+    "F)": "F)",
+    son_pronoun: "nuestros hijos",
     can: "puedan",
     travel_pronoun: "viajen",
     and: "y",
@@ -69,11 +69,11 @@ export default function AutorizathionForm() {
     country_pronoun: "nuestro",
     extend_pronoun: "extendemos",
     signature_pronoun: "firmamos",
-    authorization: "autorizacion",
-    "F)": "F",
-    son_pronoun: "hijo",
+    document: "AUTORIZAMOS",
+    "F)": "F)",
+    son_pronoun: "nuestro hijo",
     can: "pueda",
-    travel_pronoun: "viaje",
+    travel_pronoun: "viajen",
     and: "",
   };
 
@@ -89,7 +89,7 @@ export default function AutorizathionForm() {
     country_pronoun?: string;
     extend_pronoun?: string;
     signature_pronoun?: string;
-    authorization?: string;
+    document?: string;
     "F)"?: string;
   };
 
@@ -113,11 +113,10 @@ export default function AutorizathionForm() {
       case "one father and two sons":
         selectedObject = oneFatherTwoSons;
         break;
-      case "two fathers and two son":
+      case "two fathers and two sons":
         selectedObject = twoFathersTwoSons;
         break;
       default:
-        selectedObject = oneFatherOneSon;
         break;
     }
   };
@@ -127,7 +126,7 @@ export default function AutorizathionForm() {
   };
 
   const onSubmit = handleSubmit(async (values) => {
-    //console.log(selectedObject);
+    console.log(selectedObject);
 
     const combinedValues = {
       ...values,
@@ -137,7 +136,7 @@ export default function AutorizathionForm() {
 
     console.log(combinedValues);
     CreateDocument(combinedValues);
-    //reset();
+    reset();
     toggleModal();
   });
 
@@ -173,10 +172,10 @@ export default function AutorizathionForm() {
             />
 
             <FormInput
-              values={register("job")}
+              values={register("work")}
               type="text"
-              name="job"
-              id="job"
+              name="work"
+              id="work"
               placeholder="Profesion"
               required={false}
             />
@@ -238,10 +237,10 @@ export default function AutorizathionForm() {
             />
 
             <FormInput
-              values={register("job1")}
+              values={register("work1")}
               type="text"
-              name="job1"
-              id="job1"
+              name="work1"
+              id="work1"
               placeholder="Profesion"
               required={false}
             />

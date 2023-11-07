@@ -16,3 +16,6 @@ export const GetDocument = (name:string) => axios.get(`/documents/${name}`);
 export const GetDocuments = () => axios.get("/documents");
 
 export const GetTemplates = () => axios.get("/templates");
+
+export const Logout = () => axios.get("/logout");
+

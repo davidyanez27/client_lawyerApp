@@ -10,7 +10,12 @@ import PrivateDocumentForm from "../components/PrivateDocumentForm";
 import DocumentsCard from "../components/DocumentsCard";
 import TemplateCard from "../components/TemplateCard";
 import SearchCard from "../components/SearchCard";
-import AutorizathionForm from "../components/autorizathionForm";
+import AutorizathionForm from "../components/AutorizathionForm";
+import { Logout } from '../api/auth';
+
+
+import LoginPage from "./LoginPage";
+import LogoutForm from "../components/logout";
 
 function Home() {
   const [open, setOpen] = useState(true);
@@ -28,8 +33,8 @@ function Home() {
     { title: "Public ", src: "documento", template: "public.docx" },
     { title: "PATH ", src: "documento", template: "PATH.docx" },
     // { title: "Private  ", src: "documento", template: "private.docx" },
-    { title: "Profile ", src: "User", template: "profile", gap: true },
-    { title: "Setting", src: "Setting", template: "setting" },
+    { title: "Cerrar sesion", src: "User", template: "logout", gap: true },
+    //{ title: "Setting", src: "Setting", template: "setting" },
   ];
 
   //Render the component
@@ -49,6 +54,8 @@ function Home() {
         return <PublicDocumentForm />;
       case "private.docx":
         return <PrivateDocumentForm />;
+      case "logout":
+        return <LogoutForm/>;
 
       default:
         return <SearchCard/>;
@@ -108,7 +115,7 @@ function Home() {
               <span
                 onClick={() => {
                   setSelectedMenu(menu.template);
-                  console.log(selectedMenu);
+                  //console.log(selectedMenu);
                 }}
                 className={`${!open && "hidden"} origin-left duration-200`}
               >
